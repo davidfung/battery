@@ -1,5 +1,6 @@
 package com.example.appwidgetsample;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -80,7 +81,8 @@ public class NewAppWidget extends AppWidgetProvider {
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
         int batteryPct = Math.round(level / (float)scale * 100);
         return batteryPct;
-        }
+    }
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
@@ -88,5 +90,15 @@ public class NewAppWidget extends AppWidgetProvider {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
     }
+
+    @Override
+    public void onEnabled(Context context) {
+        super.onEnabled(context);
+        AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, AlarmBroadcastReceiver.class);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 100 * 3, 60000 , pi);
+    }
+
 }
 
