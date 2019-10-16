@@ -97,7 +97,7 @@ public class NewAppWidget extends AppWidgetProvider {
         AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmBroadcastReceiver.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-        am.setRepeating(AlarmManager.RTC, System.currentTimeMillis()+ 100 * 3, 60000 , pi);
+        am.setRepeating(AlarmManager.RTC, System.currentTimeMillis()+ 100, 60000 , pi);
     }
 
 }
