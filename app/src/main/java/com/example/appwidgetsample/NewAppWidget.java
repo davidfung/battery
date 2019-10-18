@@ -26,7 +26,7 @@ public class NewAppWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-
+/*
         SharedPreferences prefs = context.getSharedPreferences(
                 mSharedPrefFile, 0);
         int count = prefs.getInt(COUNT_KEY + appWidgetId, 0);
@@ -72,6 +72,8 @@ public class NewAppWidget extends AppWidgetProvider {
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
+ */
     }
 
     static int getBatteryLevelPct(Context context){
