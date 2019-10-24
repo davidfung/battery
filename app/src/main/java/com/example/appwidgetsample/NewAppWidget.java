@@ -81,5 +81,13 @@ public class NewAppWidget extends AppWidgetProvider {
         am.setRepeating(AlarmManager.RTC, System.currentTimeMillis() + 1000 * 60, 60000 * 15, pi);
     }
 
+    @Override
+    public void onDisabled(Context context) {
+        Intent intent = new Intent(context, AlarmBroadcastReceiver.class);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        am.cancel(pi);
+        super.onDisabled(context);
+    }
 }
 
