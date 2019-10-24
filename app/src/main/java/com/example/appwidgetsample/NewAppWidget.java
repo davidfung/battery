@@ -7,7 +7,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -20,28 +19,12 @@ import java.util.Date;
  */
 public class NewAppWidget extends AppWidgetProvider {
 
-    private static final String mSharedPrefFile = "com.example.android.appwidgetsample";
-    private static final String COUNT_KEY = "count";
-
     static void updateWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-         // Increment the count
-        SharedPreferences prefs = context.getSharedPreferences(
-                mSharedPrefFile, 0);
-        int count = prefs.getInt(COUNT_KEY + appWidgetId, 0);
-        count++;
-
-        // Save the count
-        SharedPreferences.Editor prefEditor = prefs.edit();
-        prefEditor.putInt(COUNT_KEY + appWidgetId, count);
-        prefEditor.apply();
-
         // Compile the last update time string
-        String dateString =
-                DateFormat.getTimeInstance(DateFormat.SHORT).format(new Date());
-        String lastUpdateString = context.getResources().getString(
-                R.string.date_count_format, count, dateString);
+        String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(new Date());
+        String lastUpdateString = context.getResources().getString(R.string.date_count_format, dateString);
 
         // Construct the RemoteViews object and update the content
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
@@ -59,21 +42,6 @@ public class NewAppWidget extends AppWidgetProvider {
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
-
-        // Setup update button to send an update request as a pending intent.
-        // The intent action must be an app widget update.
-        // Include the widget ID to be updated as an intent extra.
-        // Wrap it all in a pending intent to send a broadcast.
-        // Use the app widget ID as the request code (third argument) so that
-        // each intent is unique.
-        // Assign the pending intent to the button onClick handler
-        Intent intent = new Intent(context, NewAppWidget.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        int[] idArray = new int[]{appWidgetId};
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, idArray);
-        PendingIntent pi = PendingIntent.getBroadcast(context,
-                appWidgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        views.setOnClickPendingIntent(R.id.button_update, pi);
     }
 
     static int getBatteryLevelPct(Context context) {
@@ -102,13 +70,15 @@ public class NewAppWidget extends AppWidgetProvider {
     public void onEnabled(Context context) {
         super.onEnabled(context);
 
+        Log.d("AMG99", "onEnabled()");
+
         // Create an Intent to update the widget
         Intent intent = new Intent(context, AlarmBroadcastReceiver.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
 
         // Set a repeating alarm to call the pending intent
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC, System.currentTimeMillis() + 100 * 3, 60000 * 10, pi);
+        am.setRepeating(AlarmManager.RTC, System.currentTimeMillis() + 1000 * 60, 60000 * 15, pi);
     }
 
 }
