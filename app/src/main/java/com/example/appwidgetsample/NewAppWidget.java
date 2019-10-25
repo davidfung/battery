@@ -78,7 +78,7 @@ public class NewAppWidget extends AppWidgetProvider {
 
         // Set a repeating alarm to call the pending intent
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC, System.currentTimeMillis() + 1000 * 60, 60000 * 15, pi);
+        am.setRepeating(AlarmManager.RTC, System.currentTimeMillis() + 100, 60000, pi);
     }
 
     @Override

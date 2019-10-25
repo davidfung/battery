@@ -11,6 +11,8 @@ import android.widget.RemoteViews;
 import java.text.DateFormat;
 import java.util.Date;
 
+import static com.example.appwidgetsample.NewAppWidget.getBatteryLevelPct;
+
 public class AlarmBroadcastReceiver extends BroadcastReceiver {
 
     @Override
@@ -26,6 +28,13 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
         views.setTextViewText(R.id.appwidget_update, lastUpdateString);
 
         Log.d("AMG99", "Alarm onReceive() " + lastUpdateString);
+
+        // override the widget id with battery level
+        int batteryPct = NewAppWidget.getBatteryLevelPct(context);
+        if (batteryPct != (-1)) {
+            views.setTextViewText(R.id.appwidget_id, batteryPct + "%");
+        }
+        Log.d("AMG99", "updateAppWidget() " + batteryPct + "%");
 
         // Tell the AppWidgetManager to perform an update on the widget
         ComponentName thisWidget = new ComponentName(context, NewAppWidget.class);
