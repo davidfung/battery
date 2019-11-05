@@ -22,19 +22,15 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
         String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(new Date());
         String lastUpdateString = context.getResources().getString(R.string.date_count_format, dateString);
 
-        // Construct the RemoteViews object and update the content
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-        views.setTextViewText(R.id.appwidget_id, "BAT");
-        views.setTextViewText(R.id.appwidget_update, lastUpdateString);
-
         Log.d("AMG99", "Alarm onReceive() " + lastUpdateString);
 
-        // override the widget id with battery level
+        // Construct the RemoteViews object and update the content
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
         int batteryPct = NewAppWidget.getBatteryLevelPct(context);
         if (batteryPct != (-1)) {
             views.setTextViewText(R.id.appwidget_id, batteryPct + "%");
         }
-        Log.d("AMG99", "updateAppWidget() " + batteryPct + "%");
+        Log.d("AMG99", "Alarm updateAppWidget() " + batteryPct + "%");
 
         // Tell the AppWidgetManager to perform an update on the widget
         ComponentName thisWidget = new ComponentName(context, NewAppWidget.class);
