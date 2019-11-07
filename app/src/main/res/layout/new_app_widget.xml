@@ -1,15 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/layout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:layout_margin="8dip"
+android:background="#09C" >
+
+<TextView
+    android:id="@+id/appwidget_id"
+    style="@android:style/TextAppearance.Medium"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#09C"
-    android:padding="@dimen/widget_margin">
+    android:layout_gravity="center"
+    android:gravity="center_horizontal|center_vertical"
+    android:text="Static Text" >
+</TextView>
 
-    <TextView
-        android:id="@+id/appwidget_id"
-        style="@style/AppWidgetText"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="%" />
-
-    <!-- Update widget button -->
-</RelativeLayout>
+</LinearLayout>
