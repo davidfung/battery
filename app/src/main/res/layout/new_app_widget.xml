@@ -1,18 +1,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:id="@+id/layout"
 android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_margin="8dip"
-android:background="#09C" >
+android:layout_height="match_parent">
 
 <TextView
     android:id="@+id/appwidget_id"
-    style="@android:style/TextAppearance.Medium"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center_horizontal|center_vertical"
-    android:text="Static Text" >
+    android:gravity="center"
+    android:text=""
+    android:textColor="@color/Yellow"
+    android:textSize="32sp"
+    android:textStyle="bold"
+    android:shadowColor="@color/TransparentGrey"
+    android:shadowDx="3"
+    android:shadowDy="3"
+    android:shadowRadius="1.5"
+    >
 </TextView>
 
 </LinearLayout>
