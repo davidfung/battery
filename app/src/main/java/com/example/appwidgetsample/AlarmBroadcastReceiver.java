@@ -5,32 +5,16 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
-import java.text.DateFormat;
-import java.util.Date;
-
-import static com.example.appwidgetsample.NewAppWidget.getBatteryLevelPct;
+import static com.example.appwidgetsample.NewAppWidget.updateViews;
 
 public class AlarmBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        // Compile the last update time string
-        String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(new Date());
-        String lastUpdateString = context.getResources().getString(R.string.date_count_format, dateString);
-
-        Log.d("AMG99", "Alarm onReceive() " + lastUpdateString);
-
-        // Construct the RemoteViews object and update the content
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-        int batteryPct = NewAppWidget.getBatteryLevelPct(context);
-        if (batteryPct != (-1)) {
-            views.setTextViewText(R.id.appwidget_id, batteryPct + "%");
-        }
-        Log.d("AMG99", "Alarm updateAppWidget() " + batteryPct + "%");
+        // Update the remote view with the current battery level
+        RemoteViews views = updateViews(context);
 
         // Tell the AppWidgetManager to perform an update on the widget
         ComponentName thisWidget = new ComponentName(context, NewAppWidget.class);

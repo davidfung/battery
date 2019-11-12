@@ -19,14 +19,12 @@ import java.util.Date;
  */
 public class NewAppWidget extends AppWidgetProvider {
 
-    static void updateWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
-
+    static RemoteViews updateViews(Context context) {
         // Compile the last update time string
         String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(new Date());
         String lastUpdateString = context.getResources().getString(R.string.date_count_format, dateString);
 
-        Log.d("AMG99", "updateAppWidget() " + lastUpdateString);
+        Log.d("AMG99", "updateViews() " + lastUpdateString);
 
         // Construct the RemoteViews object and update the content
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
@@ -34,9 +32,17 @@ public class NewAppWidget extends AppWidgetProvider {
         if (batteryPct != (-1)) {
             views.setTextViewText(R.id.appwidget_id, batteryPct + "%");
         }
-        Log.d("AMG99", "updateAppWidget() " + batteryPct + "%");
+        Log.d("AMG99", "updateViews() " + batteryPct + "%");
 
-        // Instruct the widget manager to update the widget
+        return views;
+    }
+
+    static void updateWidget(Context context, AppWidgetManager appWidgetManager,
+                                int appWidgetId) {
+        // Update the remote view with the current battery level
+        RemoteViews views = updateViews(context);
+
+        // Tell the AppWidgetManager to apply the remote view on the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
