@@ -23,7 +23,6 @@ public class NewAppWidget extends AppWidgetProvider {
         // Compile the last update time string
         String dateString = DateFormat.getTimeInstance(DateFormat.SHORT).format(new Date());
         String lastUpdateString = context.getResources().getString(R.string.date_count_format, dateString);
-
         Log.d("AMG99", "updateViews() " + lastUpdateString);
 
         // Construct the RemoteViews object and update the content
@@ -31,6 +30,15 @@ public class NewAppWidget extends AppWidgetProvider {
         int batteryPct = getBatteryLevelPct(context);
         if (batteryPct != (-1)) {
             views.setTextViewText(R.id.appwidget_id, batteryPct + "%");
+            if (batteryPct >= 75) {
+                views.setTextColor(R.id.appwidget_id, context.getResources().getColor(R.color.Green));
+            } else if (batteryPct >= 50){
+                views.setTextColor(R.id.appwidget_id, context.getResources().getColor(R.color.Yellow));
+            } else if (batteryPct >= 25){
+                views.setTextColor(R.id.appwidget_id, context.getResources().getColor(R.color.Orange));
+            } else {
+                views.setTextColor(R.id.appwidget_id, context.getResources().getColor(R.color.Red));
+            }
         }
         Log.d("AMG99", "updateViews() " + batteryPct + "%");
 
