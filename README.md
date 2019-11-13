@@ -15,6 +15,9 @@ A widget to show the battery level.
     interval.  The Android OS may still regulate the alarm frequency though
     for power saving reason.
 
+  - The battery percentage is shown with a shadow for it to stay visible
+    in all background colors.
+
 ## Milestones
 
   - v0.3 UI/naming convention clean up

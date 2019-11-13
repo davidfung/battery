@@ -1,4 +1,4 @@
-package com.example.appwidgetsample;
+package com.amg99.battery;
 
 import androidx.appcompat.app.AppCompatActivity;
 

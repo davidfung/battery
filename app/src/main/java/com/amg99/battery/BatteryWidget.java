@@ -1,4 +1,4 @@
-package com.example.appwidgetsample;
+package com.amg99.battery;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -17,7 +17,7 @@ import java.util.Date;
 /**
  * Implementation of App Widget functionality.
  */
-public class NewAppWidget extends AppWidgetProvider {
+public class BatteryWidget extends AppWidgetProvider {
 
     static RemoteViews updateViews(Context context) {
         // Compile the last update time string
@@ -26,18 +26,18 @@ public class NewAppWidget extends AppWidgetProvider {
         Log.d("AMG99", "updateViews() " + lastUpdateString);
 
         // Construct the RemoteViews object and update the content
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.battery_widget);
         int batteryPct = getBatteryLevelPct(context);
         if (batteryPct != (-1)) {
-            views.setTextViewText(R.id.appwidget_id, batteryPct + "%");
+            views.setTextViewText(R.id.battery_pct, batteryPct + "%");
             if (batteryPct >= 75) {
-                views.setTextColor(R.id.appwidget_id, context.getResources().getColor(R.color.Green));
+                views.setTextColor(R.id.battery_pct, context.getResources().getColor(R.color.Green));
             } else if (batteryPct >= 50){
-                views.setTextColor(R.id.appwidget_id, context.getResources().getColor(R.color.Yellow));
+                views.setTextColor(R.id.battery_pct, context.getResources().getColor(R.color.Yellow));
             } else if (batteryPct >= 25){
-                views.setTextColor(R.id.appwidget_id, context.getResources().getColor(R.color.Orange));
+                views.setTextColor(R.id.battery_pct, context.getResources().getColor(R.color.Orange));
             } else {
-                views.setTextColor(R.id.appwidget_id, context.getResources().getColor(R.color.Red));
+                views.setTextColor(R.id.battery_pct, context.getResources().getColor(R.color.Red));
             }
         }
         Log.d("AMG99", "updateViews() " + batteryPct + "%");

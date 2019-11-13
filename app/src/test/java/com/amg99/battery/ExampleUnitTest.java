@@ -1,4 +1,4 @@
-package com.example.appwidgetsample;
+package com.amg99.battery;
 
 import org.junit.Test;
 
