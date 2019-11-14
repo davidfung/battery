@@ -6,15 +6,17 @@ Install this widget to show the battery level on your home screen.  It will refr
 
 EASY TO USE
 ===========
-SHow the battery level as a percentage.  No More.  No less.  If you like minimalistic apps, you may like this widget.
+Show the battery level as a percentage.  No More.  No less.  If you like minimalistic apps, you may like this widget.
 
 BUILT BY
 ========
 amg99.com
 
 ---------------------------------------------------------------------------
-Initial version at Nov 13, 2019.
+Version 1.0 Initial release on Nov 13, 2019.
 Android/Java, Android Studio 3.5.1
+App Bundle (aab) format
+Opt-in to App Signing by Google Play.
 
 ---------------------------------------------------------------------------
 End.
