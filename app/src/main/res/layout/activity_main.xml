@@ -10,6 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:layout_marginBottom="10dp"
         android:textStyle="bold"
         android:text="WHAT FOR" />
@@ -18,19 +19,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:textSize="18sp"
         android:text="If you want a clutter-free way to check the battery level, this widget is for you." />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Install this widget to your home screen to show the current battery level.  It will refresh itself every minute or so." />
+        android:textSize="18sp"
+        android:text="Install this widget to show the battery level on your home screen.  It will refresh itself every minute or so." />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="10dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:text="EASY TO USE" />
 
@@ -38,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:textSize="18sp"
         android:text="Show the battery level as a percentage.  No more.  No less.  If you like minimalistic apps, you may like this widget." />
 
     <TextView
@@ -45,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="10dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:text="BUILT BY" />
 
@@ -52,6 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="italic"
+        android:textSize="18sp"
         android:text="amg99.com" />
 
 </LinearLayout>
